@@ -4,7 +4,8 @@ A new Flutter application.
 
 # preview
 
-![img](./preview_one.png)
+![img](./preview_2.png)
+![img](./preview_3.png)
 
 ## Getting Started
 

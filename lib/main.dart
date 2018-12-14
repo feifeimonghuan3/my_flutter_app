@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Startup Name Generator',
       home: new RandomWords(),
+      theme: new ThemeData(
+        primaryColor: Colors.white,
+      ),
     );
   }
 }
@@ -30,8 +33,36 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('startup Name Generator'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
+        ],
       ),
       body: _buildSuggestions(),
+    );
+  }
+  
+  void _pushSaved () {
+    Navigator.of(context).push(
+        _myNavigation1()
+    );
+  }
+
+  Route _myNavigation1() {
+    return new MaterialPageRoute(
+        builder: (context) {
+          final tiles = _saved.map((pair) {
+              print(123);
+              return new ListTile(title: new Text(pair.asPascalCase, style: _biggerFont,));
+            }
+          );
+          print(tiles);
+          final divided = ListTile.divideTiles(context: context, tiles: tiles).toList();
+          return new Scaffold(
+            appBar: new AppBar(title: new Text('Saved Suggestions')
+          ),
+            body: new ListView(children: divided),
+          );
+        }
     );
   }
 
