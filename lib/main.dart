@@ -26,6 +26,7 @@ class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
   final _saved = new Set<WordPair>();
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,34 @@ class RandomWordsState extends State<RandomWords> {
         ],
       ),
       body: _buildSuggestions(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+//          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+//          BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('Business')),
+//          BottomNavigationBarItem(icon: Icon(Icons.school), title: Text('School')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+//          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home', style: const TextStyle(fontSize: 8),)),
+//          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home', style: const TextStyle(fontSize: 8),)),
+//          BottomNavigationBarItem(icon: Icon(Icons.stars), title: Text('Home')),
+//          BottomNavigationBarItem(icon: Icon(Icons.video_library), title: Text('Home')),
+//          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text('Home')),
+        ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.deepPurple,
+        onTap: _onItemTapped,
+        iconSize: 24.0,
+      ),
     );
   }
-  
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   void _pushSaved () {
     Navigator.of(context).push(
         _myNavigation1()
